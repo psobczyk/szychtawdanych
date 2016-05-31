@@ -73,11 +73,14 @@ plot.data$sex <- "1"
 plot.data$sex[3] <- "2"
 
 library(ggplot2)
-ggplot(plot.data) +
+p_nmovies <- ggplot(plot.data) +
   geom_bar(aes(x=name, y=count, fill=sex), stat="identity") +
   ylab("Liczba filmów") + xlab("") +
   scale_fill_discrete(guide=FALSE)
 
+# with plotly
+library(plotly)
+ggplotly(p_nmovies, tooltip = c("x", "y"))
 
 movies2$Director <- as.character(movies2$Director)
 directors <- paste(unlist(strsplit(movies2$Director, ", ")))
