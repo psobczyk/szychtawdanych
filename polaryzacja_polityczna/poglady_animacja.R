@@ -123,11 +123,12 @@ b2015$partia=factor(b2015$partia, levels = rev(levels(b2015$partia)))
 #wybor kolorow
 partia_colors=RColorBrewer::brewer.pal(8, "Paired")[c(2,8)]
 
+
 ggplot(b2011, aes(x=poglady, fill=partia, group=partia)) +
 	geom_density(bw=0.15, alpha=0.7) +
 	theme_fivethirtyeight(base_size = 24) +
-	scale_x_continuous("", breaks=c(0.1, 0.9), labels=c("liberalne", "konserwatywne")) +
-	scale_y_continuous("", breaks=NULL) +
+	scale_x_continuous("", breaks=c(0.1, 0.9), limits = c(0,1), labels=c("liberalne", "konserwatywne")) +
+	scale_y_continuous("", breaks=NULL, limits = c(0,1.35)) +
 	scale_fill_manual("", values = partia_colors) +
 	guides(alpha=FALSE, fill=guide_legend(override.aes = aes(alpha=1))) +
 	theme(plot.background=element_rect(fill="white"), panel.background=element_rect(fill="white"),
@@ -138,8 +139,8 @@ ggplot(b2011, aes(x=poglady, fill=partia, group=partia)) +
 ggplot(b2013, aes(x=poglady, fill=partia, group=partia)) +
 	geom_density(bw=0.15, alpha=0.7) +
 	theme_fivethirtyeight(base_size = 24) +
-	scale_x_continuous("", breaks=c(0.1, 0.9), labels=c("liberalne", "konserwatywne")) +
-	scale_y_continuous("", breaks=NULL) +
+	scale_x_continuous("", breaks=c(0.1, 0.9), limits = c(0,1), labels=c("liberalne", "konserwatywne")) +
+	scale_y_continuous("", breaks=NULL, limits = c(0,1.35)) +
 	scale_fill_manual("", values = partia_colors) +
 	guides(alpha=FALSE, fill=guide_legend(override.aes = aes(alpha=1))) +
 	theme(plot.background=element_rect(fill="white"), panel.background=element_rect(fill="white"),
@@ -150,8 +151,8 @@ ggplot(b2013, aes(x=poglady, fill=partia, group=partia)) +
 ggplot(b2015, aes(x=poglady, fill=partia, group=partia, alpha=0.2)) +
 	geom_density(bw=0.15, alpha=0.7) +
 	theme_fivethirtyeight(base_size = 24) +
-	scale_x_continuous("", breaks=c(0.1, 0.9), labels=c("liberalne", "konserwatywne")) +
-	scale_y_continuous("", breaks=NULL) +
+	scale_x_continuous("", breaks=c(0.1, 0.9), limits = c(0,1), labels=c("liberalne", "konserwatywne")) +
+	scale_y_continuous("", breaks=NULL, limits = c(0,1.35)) +
 	scale_fill_manual("", values = partia_colors) +
 	guides(alpha=FALSE, fill=guide_legend(override.aes = aes(alpha=1))) +
 	theme(plot.background=element_rect(fill="white"), panel.background=element_rect(fill="white"),
