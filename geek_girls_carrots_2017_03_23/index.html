@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dobry, zły i brzydki</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Dobry, zły i brzydki">
+  <meta name="author" content="Piotr Sobczyk">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/szychta_transparent.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/szychta_transparent.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Dobry, zły i brzydki</h1>
+    <h2>o wizualizacji danych w języku R</h2>
+    <p>Piotr Sobczyk<br/>szychtawdanych.pl</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style>
+.title-slide {
+  background-color: #FFFFFF; /* #EDE0CF; ; #CA9F9D*/
+}
+article li {
+  font-size: 27px;
+  line-height: 160%;
+}
+</style>
+
+<h2>Motywacja</h2>
+
+<div style='text-align: center;'>
+    <img height='550' src='https://images.alphacoders.com/130/13013.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Po co wizualizacja?</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <ul class = "build incremental">
+<li><b>Użyteczność</b>: podejmowanie decyzji w oparciu o dane</li>
+<li><b>Maksymalizacja wpływu</b>: obraz jako medium wyników analizy </li>
+<li><b>Estetyka</b></li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <!--
+<div style='text-align: center;'>
+    <img height='450' src='http://herdingcats.typepad.com/.a/6a00d8341ca4d953ef01a511d248cc970c-pi' />
+</div>
+-->
+
+<div style='text-align: center;'>
+    <img height='450' src='assets/img/howtolie.jpg' />
+</div>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue quote dark" id="slide-3" style="background:;">
+  <article data-timings="">
+    <p><q> Tak więc estetyka może być pomocna w życiu <br> nie należy zaniedbywać nauki o pięknie</q></p>
+
+<style>
+.dark q {
+  color: white;
+  text-align:center;
+}
+</style>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:#FFF;">
+  <hgroup>
+    <h2>Jak zabieramy się za wizualizację?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Chcemy opowiedziec pewną historię, wizualizacja jest środkiem wyrazu</li>
+<li>Notka PAP czy pobłębiona analiza?</li>
+<li>Książka kucharska czy ,,Czarodziejska Góra&quot;?</li>
+<li>Strona techniczna</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:#FFF;">
+  <hgroup>
+    <h2>Dobra wizualizacja</h2>
+  </hgroup>
+  <article data-timings="">
+    <!--https://pbs.twimg.com/media/C7DFVTgVwAUabFO.jpg-->
+
+<div style='text-align: center;'>
+    <img height='500' src='assets/img/C7DFVTgVwAUabFO.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:#FFF;">
+  <hgroup>
+    <h2>Dobra wizualizacja</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Jasny, zapadający w pamięć przekaz</li>
+<li>Dopasowana do odbiorców (czytelnicy gazet, współpracownicy, kierownicy)</li>
+<li>Dopasowana do sytuacji w jakiej będą odbierane</li>
+<li>Wywieraja wpływ, przekazuje wiedzę, poszerza świadomość</li>
+</ul>
+
+<div style='text-align: center;'>
+    <img height='350' src='assets/img/C7DFVTgVwAUabFO.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:#FFF;">
+  <hgroup>
+    <h2>Zła wizualizacja</h2>
+  </hgroup>
+  <article data-timings="">
+    <div style='text-align: center;'>
+    <img height='500' src='assets/img/z19705009QJak-wysokie-emerytury-dostaja-Polacy-.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:#FFF;">
+  <hgroup>
+    <h2>Zła wizualizacja</h2>
+  </hgroup>
+  <article data-timings="">
+    <!-- http://smarterpoland.pl/wp-content/uploads/2017/01/z19705009QJak-wysokie-emerytury-dostaja-Polacy-.jpg -->
+
+<ul class = "build incremental">
+<li>Celowo wprowadza w błąd odbiorcę</li>
+<li>Przesycona zbędnymi informacjami</li>
+<li>Niedokładna</li>
+</ul>
+
+<div style='text-align: center;'>
+    <img height='350' src='assets/img/z19705009QJak-wysokie-emerytury-dostaja-Polacy-.jpg' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:#FFF;">
+  <hgroup>
+    <h2>Zła wizualizacja</h2>
+  </hgroup>
+  <article data-timings="">
+    <!--http://smarterpoland.pl/wp-content/uploads/2017/01/Screen-Shot-2016-12-25-at-23.40.46-1024x1012.png -->
+
+<div style='text-align: center;'>
+    <img height='550' src='assets/img/Screen-Shot-2016-12-25-at-23.40.46-1024x1012.png'/>
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:#FFF;">
+  <hgroup>
+    <h2>Brzydka wizualizacja</h2>
+  </hgroup>
+  <article data-timings="">
+    <!--http://smarterpoland.pl/wp-content/uploads/2017/01/Screen-Shot-2016-12-25-at-23.13.38.png -->
+
+<div style='text-align: center;'>
+    <img height='500' src='assets/img/Screen-Shot-2016-12-25-at-23.13.38.png' />
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Brzydka wizualizacja</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <ul class = "build incremental">
+<li>Trudna w interpretacji</li>
+<li>Niecelowo wprowadzająca w błąd</li>
+<li>Zawiera zbędne i nudne informacje</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <!--http://smarterpoland.pl/wp-content/uploads/2017/01/Screen-Shot-2016-12-25-at-23.13.38.png -->
+
+<div style='text-align: center;'>
+    <img height='450' src='assets/img/Screen-Shot-2016-12-25-at-23.13.38.png' />
+</div>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:#FFF;">
+  <hgroup>
+    <h2>Case study</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Dane dotyczące PKB na mieszkańca i ludności na świecie</li>
+<li>Chcemy pokazać nierówności społeczne</li>
+<li>Dane pochodzą z serwisu gapminder <a href="https://www.gapminder.org">https://www.gapminder.org</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:#FFF;">
+  <hgroup>
+    <h2>Kolory</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Wyróżnienie informacji, umożliwienie rozpoznania grup</li>
+<li>Dobór palety barw odpowiedniej do danych</li>
+<li>Symulator schorzeń wzroku, np. <a href="http://www.color-blindness.com/coblis-color-blindness-simulator/">http://www.color-blindness.com/coblis-color-blindness-simulator/</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:#FFF;">
+  <hgroup>
+    <h2>Wybór palety barw</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:#FFF;">
+  <hgroup>
+    <h2>Wybór palety barw</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Skala ilościowa (uporządkowana)</li>
+<li>Skala uporządkowana rozbieżna (z elementem neutralnym)</li>
+<li>Skala jakościowa (nieuporządkowana)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:#FFF;">
+  <hgroup>
+    <h2>Wybór palety barw</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:#FFF;">
+  <hgroup>
+    <h2>Wybór palety barw</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:#FFF;">
+  <hgroup>
+    <h2>Wybór palety barw</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:#FFF;">
+  <hgroup>
+    <h2>Wybór palety barw</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:#FFF;">
+  <hgroup>
+    <h2>Wybór palety barw</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:#FFF;">
+  <hgroup>
+    <h2>Sposób przedstawienia danych</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Te same dane można przedstawić na wiele sposobów</li>
+<li>Jaki cel chcemy osiągnąć?</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:#FFF;">
+  <hgroup>
+    <h2>Sposób przedstawienia danych</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:#FFF;">
+  <hgroup>
+    <h2>Sposób przedstawienia danych - odpowiednia skala</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:#FFF;">
+  <hgroup>
+    <h2>Sposób przedstawienia danych - kształt, kolor, rozmiar punktów</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:#FFF;">
+  <hgroup>
+    <h2>Sposób przedstawienia danych - kształt, kolor, rozmiar punktów</h2>
+  </hgroup>
+  <article data-timings="">
+    <iframe src="diagram.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:#FFF;">
+  <hgroup>
+    <h2>Inaczej</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:#FFF;">
+  <article data-timings="">
+    <iframe src="uszeregowane_pkb.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:#FFF;">
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:#FFF;">
+  <hgroup>
+    <h2>Źródła</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Przemysław Biecek, ,,Odkrywać, Ujawniać, Objaśniać! Zbiór esejów o sztuce prezentowania danych&quot;, 2014</li>
+<li>Edward Tufte, ,,Beautiful evidence&quot;</li>
+<li>Gapminder, <a href="https://www.gapminder.org">https://www.gapminder.org</a></li>
+<li>Symulator schorzeń wzroku <a href="http://www.color-blindness.com/coblis-color-blindness-simulator/">http://www.color-blindness.com/coblis-color-blindness-simulator/</a></li>
+<li><a href="https://www.r-bloggers.com/data-visualization-part-1/">https://www.r-bloggers.com/data-visualization-part-1/</a></li>
+<li><a href="https://lisacharlotterost.github.io/2016/04/22/Colors-for-DataVis/">https://lisacharlotterost.github.io/2016/04/22/Colors-for-DataVis/</a></li>
+<li>Szychta w danych, <a href="http://www.szychtawdanych.pl">www.szychtawdanych.pl</a></li>
+<li>pakiety: <strong>ggplot2</strong>, <strong>highcharter</strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Po co wizualizacja?'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='NA'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Jak zabieramy się za wizualizację?'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Dobra wizualizacja'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Dobra wizualizacja'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Zła wizualizacja'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Zła wizualizacja'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Zła wizualizacja'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Brzydka wizualizacja'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Brzydka wizualizacja'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Case study'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Kolory'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Wybór palety barw'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Wybór palety barw'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Wybór palety barw'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Wybór palety barw'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Wybór palety barw'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Wybór palety barw'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Wybór palety barw'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Sposób przedstawienia danych'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Sposób przedstawienia danych'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Sposób przedstawienia danych - odpowiednia skala'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Sposób przedstawienia danych - kształt, kolor, rozmiar punktów'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Sposób przedstawienia danych - kształt, kolor, rozmiar punktów'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Inaczej'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='NA'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='NA'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Źródła'>
+         29
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
