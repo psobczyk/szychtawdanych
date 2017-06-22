@@ -17,7 +17,7 @@ library(dplyr)
 
 ----
 
-* Co to jest mapa?
+* <big>Co to jest mapa?</big>
 * Skąd brać (nie)legalnie kontury granic?
 * Jak rysować mapy w R
 
@@ -199,3 +199,12 @@ ggplot(data = plotData, mapping = aes(x = long, y = lat)) +
         legend.key.width = unit(1.2, "cm"))
 ```
 
+
+# Tips and tricks
+
+---
+
+* Znalezienie projekcji mapy **proj4string(wczytane.shp)**
+* Umieszczenie legendy w ,,wolnym miejscu" **theme(legened.position = c(0.1,0.1))**
+* Dodanie etykietek w środku wielokątu **geom_label**
+* Dodanie dodatkowego opisu na dole **labs(caption = "bla, bla, bla")**
