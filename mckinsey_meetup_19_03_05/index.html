@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Piotr Sobczyk" />
+  <title>Let Data Do the Talking</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="index_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="report.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Let Data Do the Talking</h1>
+  <h1 class="subtitle">A Statistician’s Perspective on Social Topics</h1>
+    <h2 class="author">Piotr Sobczyk</h2>
+    <h3 class="date">5th March 2019</h3>
+</section>
+
+<section><section id="introduction" class="title-slide slide level1"><h1>Introduction</h1></section><section id="about-me" class="slide level2">
+<h2>About me</h2>
+<ul>
+<li class="fragment">statistician/data analyst/data scientist</li>
+<li class="fragment">R enthusiast</li>
+<li class="fragment">working <span class="citation" data-cites="OLX">@OLX</span> in Berlin</li>
+<li class="fragment">www.szychtawdanych.pl</li>
+<li class="fragment"><a href="https://github.com/psobczyk" class="uri">https://github.com/psobczyk</a></li>
+<li class="fragment">blog in english on github pages (very early stage)</li>
+</ul>
+</section><section id="section" class="slide level2" data-background-iframe="http://szychtawdanych.pl">
+<h2></h2>
+</section><section id="why-szychta" class="slide level2">
+<h2>Why Szychta?</h2>
+<ul>
+<li class="fragment">Creative procrastination from PhD</li>
+<li class="fragment">How things really are?</li>
+<li class="fragment">Poland should have discussion based on data, not ideology or party</li>
+</ul>
+</section><section id="good-practice" class="slide level2">
+<h2>Good practice</h2>
+<ul>
+<li class="fragment"><a href="https://fivethirtyeight.com">FiveThirtyEight</a></li>
+<li class="fragment"><a href="https://graphics.wsj.com">WSJ</a></li>
+<li class="fragment"><a href="https://www.scmp.com/infographics">South China Morning Post</a></li>
+<li class="fragment"><a href="https://www.economist.com/node/21011894">Economist</a></li>
+<li class="fragment"><a href="http://biqdata.wyborcza.pl/biqdata/0,0.html">BIQData</a></li>
+</ul>
+</section><section id="topics-of-interest" class="slide level2">
+<h2>Topics of interest</h2>
+<ul>
+<li class="fragment">Demography</li>
+<li class="fragment">Politics</li>
+<li class="fragment">Economy</li>
+<li class="fragment">Sports</li>
+</ul>
+</section><section id="topics-of-interest-1" class="slide level2">
+<h2>Topics of interest</h2>
+<p><img src="obrazki/store.gif" width="700px, fig.align='center'" /></p>
+</section></section>
+<section><section id="data-sources" class="title-slide slide level1"><h1>Data sources</h1></section><section id="governmental-data" class="slide level2">
+<h2>Governmental data</h2>
+<ul>
+<li class="fragment"><a href="https://bdl.stat.gov.pl/BDL/start">Local data bank</a></li>
+<li class="fragment"><a href="http://demografia.stat.gov.pl/bazademografia/">Baza demografia</a></li>
+<li class="fragment"><a href="http://www.gugik.gov.pl/pzgik/dane-bez-oplat/dane-z-panstwowego-rejestru-granic-i-powierzchni-jednostek-podzialow-terytorialnych-kraju-prg">Główny urząd Geodezji i Kartografii</a></li>
+<li class="fragment"><a href="https://dane.gov.pl">Open data</a></li>
+<li class="fragment"><a href="http://powietrze.gios.gov.pl/pjp/archives">Główny Inspektorat Ochrony Środowiska</a>, <a href="https://www.bdl.lasy.gov.pl/portal/udostepnianie">Bank danych o lasach</a></li>
+<li class="fragment"><a href="https://dane.imgw.pl">Instytut Meteorologii i Gospodarki Wodnej</a></li>
+<li class="fragment"><a href="https://pkw.gov.pl/316_Wybory_do_Parlamentu_Europejskiego">Państwowa komisja wyborcza</a></li>
+</ul>
+</section><section id="non-govermental-data-sources" class="slide level2">
+<h2>Non-govermental data sources</h2>
+<ul>
+<li class="fragment"><a href="https://www.wroclaw.pl/open-data/dataset">Data shared by cities</a></li>
+<li class="fragment"><a href="https://download.geofabrik.de">OpenStreetMap</a></li>
+<li class="fragment">Google Maps (distance, geolocalization)</li>
+<li class="fragment"><a href="https://ec.europa.eu/eurostat/data/database">Eurostat</a></li>
+<li class="fragment"><a href="https://www.naturalearthdata.com/downloads/">Natural Earth</a> - free vector and raster world maps</li>
+<li class="fragment"><a href="https://data.oecd.org">OECD</a></li>
+<li class="fragment"><a href="https://data.worldbank.org">World bank</a></li>
+</ul>
+</section><section id="non-govermental-data-sources-1" class="slide level2">
+<h2>Non-govermental data sources</h2>
+<ul>
+<li class="fragment">Kaggle, <a href="https://archive.ics.uci.edu/ml/index.php">UCI Machine Learning repository</a></li>
+<li class="fragment">Data from scraping (try <em>rvest</em> and <em>RSelenium</em> packages)</li>
+<li class="fragment">Wikipedia</li>
+<li class="fragment"><a href="https://www.gutenberg.org">Gutenberg project</a>, <a href="https://wolnelektury.pl/katalog/lektury/">Wolne lektury</a></li>
+<li class="fragment">Social media (mostly twitter)</li>
+<li class="fragment">Private data: Google localization, WhatsApp, Messenger etc.</li>
+</ul>
+</section><section id="data-difficult-to-get" class="slide level2">
+<h2>Data difficult to get</h2>
+<ul>
+<li class="fragment">Postal code</li>
+<li class="fragment">Train timetables</li>
+<li class="fragment">Very detailed demographics data (available, but one has to request it and pay for it)</li>
+<li class="fragment">Crime data</li>
+</ul>
+</section></section>
+<section><section id="what-can-we-actually-do-with-that-data" class="title-slide slide level1"><h1>What can we actually do with that data?</h1></section><section id="technical-note" class="slide level2">
+<h2>Technical note</h2>
+<ul>
+<li class="fragment"><a href="https://github.com/psobczyk/whyR_2018_workshop">Maps</a></li>
+<li class="fragment"><a href="https://github.com/WhyR2017/prezentacje/tree/master/03_Tidyverse/5">Useful tips</a></li>
+<li class="fragment"><a href="https://github.com/psobczyk/szychtawdanych">Codes for blog posts</a></li>
+</ul>
+</section></section>
+<section><section id="demographics" class="title-slide slide level1" data-transition="zoom"><h1>Demographics</h1></section><section id="true-fertility-rate-in-poland" class="slide level2">
+<h2>True fertility rate in Poland</h2>
+<p><img src="obrazki/birth_age_groups_poland.png" width="760px, fig.align='center'" /></p>
+<ul>
+<li class="fragment"><p>Total fertility rate = Expected number of children born by a woman throughout her life</p></li>
+<li class="fragment"><p><span class="math display">\[\frac{\text{births at age 15}}{\text{woman at age 15}} + \frac{\text{births at age 16}}{\text{woman at age 16}} + 
+\dots + \frac{\text{births at age 45}}{\text{woman at age 45}}\]</span></p></li>
+</ul>
+</section><section id="section-1" class="slide level2">
+<h2></h2>
+<ul>
+<li class="fragment">Let us consider group of woman of age 20-24 in 2002</li>
+<li class="fragment">Fertility rate in 2002 was 1.24. In reality those woman gave birth to 1.33</li>
+<li class="fragment">In modern times births are calculated very precisely…</li>
+<li class="fragment">… but in the last 15 years more than <a href="https://tvn24bis.pl/z-kraju,74/gus-ponad-2-5-mln-polakow-na-emigracji,781794.html">2.5 million</a> Poles emigrated</li>
+</ul>
+</section><section id="section-2" class="slide level2">
+<h2></h2>
+<ul>
+<li class="fragment"><span class="math display">\[\frac{\text{births at age 15}}{\text{woman at age 15}} + \frac{\text{births at age 16}}{\text{woman at age 16}} + 
+\dots + \frac{\text{births at age 45}}{\text{woman at age 45}}\]</span></li>
+<li class="fragment">Only some emigrants deregistered in Poland, but their children are born abroad</li>
+<li class="fragment">In UK in 2017 for 900K Poles 20K children were born. In Germany for 687K Poles 12K children were born</li>
+<li class="fragment">Total fertility rate is not 1.48 but rather 1.65</li>
+</ul>
+</section><section id="section-3" class="slide level2">
+<h2></h2>
+<p><img src="obrazki/miasta.gif" width="800px, fig.align='center'" /></p>
+</section><section id="suburbanization" class="slide level2">
+<h2>Suburbanization</h2>
+<p><img src="obrazki/pre_vs_post_working.jpg" width="800px, fig.align='center'" /></p>
+</section><section id="section-4" class="slide level2">
+<h2></h2>
+<p><img src="obrazki/migrations_2015.png" width="800px, fig.align='center'" /></p>
+</section></section>
+<section><section id="economics" class="title-slide slide level1" data-transition="zoom"><h1>Economics</h1></section><section id="section-5" class="slide level2">
+<h2></h2>
+<p><img src="obrazki/debt_eng.gif" width="800px, fig.align='center'" /></p>
+</section><section id="section-6" class="slide level2">
+<h2></h2>
+<p><img src="obrazki/migrations_1995_2015.png" width="800px, fig.align='center'" /></p>
+</section><section id="world-inequalities" class="slide level2">
+<h2>World inequalities</h2>
+<p><img src="obrazki/gdp_population_regions.png" width="800px, fig.align='center'" /></p>
+</section><section id="section-7" class="slide level2">
+<h2></h2>
+<p><img src="obrazki/gdp_convergence_89_17.png" width="900px, fig.align='center'" /></p>
+</section></section>
+<section><section id="politics" class="title-slide slide level1" data-transition="zoom"><h1>Politics</h1></section><section id="effect-of-electoral-system-on-european-parliament-elections" class="slide level2">
+<h2>Effect of electoral system on European Parliament elections</h2>
+<p><img src="obrazki/european_election_different_electoral_systems.png" width="800px, fig.align='center'" /></p>
+</section><section id="section-8" class="slide level2">
+<h2></h2>
+<p><img src="obrazki/poverty_asia.png" width="700px, fig.align='center'" /></p>
+<ul>
+<li class="fragment">Highly recommended book: Factfulness</li>
+</ul>
+</section></section>
+<section><section id="miscellaneous" class="title-slide slide level1"><h1>Miscellaneous</h1></section><section id="section-9" class="slide level2">
+<h2></h2>
+<p><img src="obrazki/effectivness_medals.png" width="800px, fig.align='center'" /></p>
+</section><section id="section-10" class="slide level2">
+<h2></h2>
+<p><img src="obrazki/most_recognized_holidays.png" width="800px, fig.align='center'" /></p>
+</section><section id="section-11" class="slide level2">
+<h2></h2>
+<p><img src="obrazki/ksiegi_emocje_slowa.png" width="800px, fig.align='center'" /></p>
+</section><section id="booklet-wykresy-unplugged" class="slide level2">
+<h2>Book(let) “Wykresy unplugged”</h2>
+<p><img src="/Users/piotr/Downloads/booklet.png" width="700px, fig.align='center'" /></p>
+</section></section>
+<section><section id="wrap-up" class="title-slide slide level1"><h1>Wrap up</h1></section><section id="section-12" class="slide level2" data-background="img/szychta_logo_duze.jpg" data-background-size="600px" data-background-position="bottom left">
+<h2></h2>
+<ul>
+<li class="fragment"><font size="8"><a href="www.szychtawdanych.pl">szychtawdanych.pl</a> </font></li>
+<li class="fragment"><font size="8"><a href="https://www.facebook.com/szychtawdanych/">facebook.com/szychtawdanych/</a></font></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="index_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="index_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'concave', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
